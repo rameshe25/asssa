@@ -4,7 +4,7 @@ const morgan =require("morgan")
 const swaggerUI=require("swagger-ui-express")
 
 
-const port = process.env.PORT || 5000;
+const port = 80;
 const imageRouter = require("./routes/image")
 
 
