@@ -47,13 +47,14 @@ async function getDiff(options,image1,image2) {
 
 
 
-router.post('/',upload.array('picture', 2), async (req,res)=> {
+router.post('/',upload.fields([{name: 'picture1', maxCount: 1}, {name: 'picture2', maxCount: 1}]), async (req,res)=> {
 
-    const i1 = req.files[0]['buffer'];
-    const i2 = req.files[1]['buffer'];
+    const i1 = req.files['picture1'][0]['buffer'];
+    const i2 = req.files['picture2'][0]['buffer'];
     tGen(req.body.tolerance);
     const result=await getDiff(options,i1,i2)
     return res.json(result);   
     //return res.send("<img src="+result['image']+">")
+    //console.log(req.files['picture2'][0]['buffer']);
 });
 module.exports = router;
